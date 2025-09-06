@@ -101,18 +101,6 @@ curl -X DELETE "http://localhost:8000/notes/1"
     docker exec notes_api flake8 app/
     ```
 
-#### Development Server
-
-1.  **Start only the database:**
-    ```sh
-    docker-compose up -d db
-    ```
-2.  **Run the API locally:**
-    ```sh
-    export DATABASE_URL="postgresql://postgres:password@localhost:5432/notesdb"
-    uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-    ```
-
 ### Project Structure
 ![Repository](repository.png)
 
