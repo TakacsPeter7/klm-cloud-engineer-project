@@ -102,14 +102,14 @@ curl -X DELETE "http://localhost:8000/notes/1"
     ```
 
 ### Project Structure
-![Repository](image.png)
+![Repository](repository.png)
 
 ---
 
 ## 2. Cloud Infrastructure Design
 
 ### Cloud Architecture (GCP)
-![Cloud Architecture](image.png)
+![Cloud Architecture](cloud_architecture.png)
 
 ### Security Features
 -   **Network Security:** Private VPC with no public IPs for the database.
