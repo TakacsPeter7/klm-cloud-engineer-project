@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-
+ENV PATH="/usr/local/bin:$PATH"
 COPY app/ ./app/
 
 EXPOSE 8000

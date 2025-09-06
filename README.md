@@ -83,6 +83,10 @@ curl -X DELETE "http://localhost:8000/notes/1"
     ```
 
 #### Code Quality
+-   **Install tools:**
+    ```sh
+    docker exec notes_api pip install black isort flake8
+    ```
 
 -   **Format code:**
     ```sh
