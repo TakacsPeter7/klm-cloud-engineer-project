@@ -1,9 +1,6 @@
-# Environment variables
 .env
 .env.local
 .env.*.local
-
-# Python
 __pycache__/
 *.py[cod]
 *$py.class
@@ -25,12 +22,8 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
-# PyInstaller
 *.manifest
 *.spec
-
-# Unit test / coverage reports
 htmlcov/
 .tox/
 .nox/
@@ -42,8 +35,6 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
-
-# Virtual environments
 .env
 .venv
 env/
@@ -51,15 +42,11 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-
-# IDEs
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-
-# OS
 .DS_Store
 .DS_Store?
 ._*
@@ -67,34 +54,20 @@ venv.bak/
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-# Docker
 .dockerignore
-
-# Terraform
 *.tfstate
 *.tfstate.*
 .terraform/
 .terraform.lock.hcl
 *.tfplan
-
-# Database
 *.db
 *.sqlite
 *.sqlite3
-
-# Logs
 *.log
 logs/
-
-# Secrets
 secrets.json
 service-account-key.json
-
-# Test coverage
 htmlcov/
 .coverage
-
-# Temporary files
 tmp/
 temp/

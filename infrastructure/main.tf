@@ -65,7 +65,6 @@ resource "google_compute_subnetwork" "subnet" {
   }
 }
 
-# Cloud SQL (PostgreSQL)
 resource "google_sql_database_instance" "postgres" {
   name             = "notes-api-db"
   database_version = "POSTGRES_15"
@@ -120,7 +119,6 @@ resource "random_password" "db_password" {
   special = true
 }
 
-# Private Service Networking for Cloud SQL
 resource "google_compute_global_address" "private_ip_address" {
   name          = "private-ip-address"
   purpose       = "VPC_PEERING"
@@ -167,7 +165,6 @@ resource "google_project_iam_member" "cloud_run_secret_accessor" {
   member  = "serviceAccount:${google_service_account.cloud_run_sa.email}"
 }
 
-# Cloud Run Service
 resource "google_cloud_run_v2_service" "notes_api" {
   name     = "notes-api"
   location = var.region
@@ -252,7 +249,6 @@ resource "google_cloud_run_v2_service" "notes_api" {
   ]
 }
 
-# IAM for Cloud Run (allow public access for demo)
 resource "google_cloud_run_service_iam_member" "public_access" {
   location = google_cloud_run_v2_service.notes_api.location
   service  = google_cloud_run_v2_service.notes_api.name
@@ -260,7 +256,6 @@ resource "google_cloud_run_service_iam_member" "public_access" {
   member   = "allUsers"
 }
 
-# Cloud Armor Security Policy
 resource "google_compute_security_policy" "notes_api_policy" {
   name = "notes-api-security-policy"
 
@@ -299,7 +294,6 @@ resource "google_compute_security_policy" "notes_api_policy" {
   }
 }
 
-# Outputs
 output "cloud_run_url" {
   description = "URL of the Cloud Run service"
   value       = google_cloud_run_v2_service.notes_api.uri
