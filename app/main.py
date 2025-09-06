@@ -42,7 +42,7 @@ def read_root():
 @app.post("/notes", response_model=schemas.Note)
 def create_note(note: schemas.NoteCreate, db: Session = Depends(get_db)):
     """Create a new note"""
-    db_note = models.Note(**note.dict())
+    db_note = models.Note(**note.model_dump())
     db.add(db_note)
     db.commit()
     db.refresh(db_note)
@@ -74,7 +74,7 @@ def update_note(
     if note is None:
         raise HTTPException(status_code=404, detail="Note not found")
 
-    for field, value in note_update.dict(exclude_unset=True).items():
+    for field, value in note_update.model_dump(exclude_unset=True).items():
         setattr(note, field, value)
 
     db.commit()
