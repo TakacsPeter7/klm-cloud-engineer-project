@@ -206,11 +206,11 @@ curl -X DELETE "http://localhost:8000/notes/1"
 -   **High Availability:** For critical applications, a multi-region deployment would provide higher availability and resilience against regional outages.
 -   **Semantic Versioning:** Automate versioning within the CI/CD pipeline and generate changelogs based on commit messages using tools like `semantic-release`.
 -   **Enhanced Workflow:** Implement a Gitflow-style workflow where deployments to staging happen from the `develop` branch, and a manual approval/code review is required before deploying to production from the `main` branch.
--   **Deployment Strategies:** Utilize advanced deployment strategies like canary or blue-green deployments to enable zero-downtime releases and safe rollbacks.
+-   **Deployment Strategies:** Utilize advanced deployment strategies like canary or blue-green deployments to enable zero-downtime releases and safe rollbacks in Cloud Run.
 -   **Disaster Recovery:** A disaster recovery (DR) plan should be designed to restore or roll back the application and its data to a previous state in case of a major failure.
 -   **Cloud Exit Plan:** An exit strategy could be developed to migrate all resources from GCP to another cloud provider (e.g., AWS, Azure) if required by business needs or compliance.
 -   **Terraform code:** The terraform code could be more modular, could use more variables for parameters (for eg. the bucket name for the tfstate file is hardcoded as of right now)
--   **More options for the CI/CD pipeline:** Seperate pipeliens for the application code and IaC would be beneficial. The pipeline for terraform could support multiple modes (such as only planning, applying (terraform plan + apply), testing (terraform plan+apply+destroy) and destroy option).
+-   **More options for the CI/CD pipeline:** Seperate pipeliens for the application code and IaC would be beneficial. The pipeline for terraform could support multiple modes (such as only planning, applying (terraform plan + apply), testing (terraform plan+apply+destroy) and destroy option). Variables for the pipeline could be supplemented from another repository (variables for terraform deployer account, authentication etc.)
 
 ---
 
