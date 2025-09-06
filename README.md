@@ -75,36 +75,26 @@ curl -X DELETE "http://localhost:8000/notes/1"
 }
 ```
 
-### Local Development
+#### Running test inside container
 
-#### Running Tests
-
-1.  **Install dependencies:**
+  **Run with coverage:**
     ```sh
-    pip install -r requirements.txt
-    ```
-2.  **Run tests:**
-    ```sh
-    pytest tests/ -v
-    ```
-3.  **Run with coverage:**
-    ```sh
-    pytest tests/ -v --cov=app --cov-report=html
+    docker exec notes_api pytest tests/ -v
     ```
 
 #### Code Quality
 
 -   **Format code:**
     ```sh
-    black app/
+    docker exec notes_api black app/
     ```
 -   **Sort imports:**
     ```sh
-    isort app/
+    docker exec notes_api isort app/
     ```
 -   **Lint code:**
     ```sh
-    flake8 app/
+    docker exec notes_api flake8 app/
     ```
 
 #### Development Server
