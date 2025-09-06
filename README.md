@@ -227,6 +227,7 @@ curl -X DELETE "http://localhost:8000/notes/1"
 -   **Deployment Strategies:** Utilize advanced deployment strategies like canary or blue-green deployments to enable zero-downtime releases and safe rollbacks.
 -   **Disaster Recovery:** A disaster recovery (DR) plan should be designed to restore or roll back the application and its data to a previous state in case of a major failure.
 -   **Cloud Exit Plan:** An exit strategy could be developed to migrate all resources from GCP to another cloud provider (e.g., AWS, Azure) if required by business needs or compliance.
+-   **Terraform code:** The terraform code could be more modular, could use more variables for parameters (for eg. the bucket name for the tfstate file is hardcoded as of right now)
 
 ---
 
