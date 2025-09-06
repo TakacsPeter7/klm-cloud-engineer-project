@@ -24,7 +24,6 @@ This document outlines the project structure, local setup, cloud architecture, a
 4.  **Access the API:**
     - **API Base URL:** `http://localhost:8000`
     - **Interactive API Docs:** `http://localhost:8000/docs`
-    - **Alternative API Docs:** `http://localhost:8000/redoc`
 
 ### API Usage
 

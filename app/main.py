@@ -12,7 +12,8 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI(
     title="Note-Taking API",
     description="A simple REST API for managing text notes",
-    version="1.0.0"
+    version="1.0.0",
+    redoc_url=None
 )
 
 app.add_middleware(
