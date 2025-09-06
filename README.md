@@ -77,7 +77,7 @@ curl -X DELETE "http://localhost:8000/notes/1"
 
 #### Running test inside container
 
-  **Run with coverage:**
+-   **Run tests:**
     ```sh
     docker exec notes_api pytest tests/ -v
     ```
