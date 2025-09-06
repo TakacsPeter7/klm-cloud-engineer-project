@@ -1,6 +1,6 @@
-# D&T Cloud Engineer Assignment
+###### D&T Cloud Engineer Assignment ######
 
-###### 1: APPLICATION ######
+# 1: APPLICATION
 
 ## Local Setup
 
@@ -8,19 +8,19 @@ Prerequisites
 - Docker and Docker Compose installed
 - Git for cloning the repository
 
-1. Clone the repository
-2. Start the application
+### 1. Clone the repository
+### 2. Start the application
    docker-compose up -d
-3. Verify the services are running
+### 3. Verify the services are running
    docker-compose ps
 
-4. Access the API
+### 4. Access the API
    - API Base URL: http://localhost:8000
    - Interactive API: http://localhost:8000/docs
    - Alternative API Docs: http://localhost:8000/redoc
 
-### Endpoints
-#### 1. Create a Note
+## Endpoints
+### 1. Create a Note
 curl -X POST "http://localhost:8000/notes" \
      -H "Content-Type: application/json" \
      -d '{
@@ -28,14 +28,14 @@ curl -X POST "http://localhost:8000/notes" \
        "content": "This is the content of my first note"
      }'
 
-#### 2. Get All Notes
+### 2. Get All Notes
  curl -X GET "http://localhost:8000/notes"
 
-#### 3. Get a Specific Note
+### 3. Get a Specific Note
 curl -X GET "http://localhost:8000/notes/1"
 
 
-#### 4. Update a Note
+### 4. Update a Note
 curl -X PUT "http://localhost:8000/notes/1" \
      -H "Content-Type: application/json" \
      -d '{
@@ -43,10 +43,10 @@ curl -X PUT "http://localhost:8000/notes/1" \
        "content": "Updated content"
      }'
 
-#### 5. Delete a Note
+### 5. Delete a Note
 curl -X DELETE "http://localhost:8000/notes/1"
 
-### Example Response
+#### Example Response
 json
 {
   "id": 1,
@@ -65,21 +65,21 @@ pytest tests/ -v
 #### Run with coverage
 pytest tests/ -v --cov=app --cov-report=html
 
-#### Code Quality
-# Format code
+### Code Quality
+#### Format code
 black app/
 
-# Sort imports
+#### Sort imports
 isort app/
 
-# Lint code
+#### Lint code
 flake8 app/
 
 ### Local Development
-# Start only the database
+#### Start only the database
 docker-compose up -d db
 
-### Run the API locally (for development)
+#### Run the API locally (for development)
 export DATABASE_URL="postgresql://postgres:password@localhost:5432/notesdb"
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
@@ -87,9 +87,9 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ![Repository](repository.png)
 
 
-###### 2: Cloud Infra Design ######
+# 2: Cloud Infra Design
 
-### Cloud Architecture (GCP)
+## Cloud Architecture (GCP)
 ![Cloud Architecture](cloud_architecture.png)
 
 Security Features
@@ -126,64 +126,64 @@ Alternatives Considered:
 - Security: Private IP, SSL encryption, IAM integration
 - Scalability: Can scale vertically as needed
 
-#### Identity & Access Management
+### Identity & Access Management
 - Service Accounts: Principle of least privilege
 - IAM Roles: Granular permissions (cloudsql.client, secretmanager.secretAccessor)
 - No Default Credentials: Explicit service account assignment
 
-#### Secrets Management
+### Secrets Management
 - Secret Manager: Encrypted storage for sensitive data
 - Environment Variables: Secure injection into containers
 - Rotation: Support for credential rotation
 - Access Logging: Audit trail for secret access
 
-#### Application Security
+### Application Security
 - Container Scanning: Trivy vulnerability detection
 - SSL/TL*: End-to-end encryption
 - Input Validation: Pydantic model validation
 - Error Handling: Secure error responses without information leakage
 
-### Trade-offs & Alternatives
+## Trade-offs & Alternatives
 
-#### Cost vs. Performance
+### Cost vs. Performance
 - Current: Cloud Run (pay-per-use) + Cloud SQL (small instance)
 - Alternative: Preemptible GKE cluster for cost optimization
 - Trade-off: Chose simplicity and managed services over cost optimization
 
-#### Availability vs. Cost
+### Availability vs. Cost
 - Current: Single-zone deployment
 - Alternative: Multi-zone with read replicas for higher availability
 - Trade-off: Balanced cost with acceptable availability for demo
 
-#### Security vs. Accessibility
+### Security vs. Accessibility
 - Current: Public API with rate limiting
 - Alternative: API Gateway with authentication
 - Trade-off: Chose accessibility for demo while maintaining basic security
 
-### Monitoring & Observability
+## Monitoring & Observability
 
-#### Built-in Monitoring
+### Built-in Monitoring
 - Cloud Run Metrics: Request rate, latency, error rate
 - Cloud SQL Monitoring: Connection count, CPU usage, disk I/O
 - Health Checks: Startup and liveness probes
 
-#### Other monitoring&logging tools to consider
+### Other monitoring&logging tools to consider
 - Cloud Monitoring: Custom metrics and alerting
 - Cloud Logging: Centralized log aggregation
 - Error Reporting: Automatic error detection and grouping
 - Cloud Trace: Distributed tracing for performance analysis
 
 
-###### 3: DevOps - CI/CD Pipeline Design ######
+# 3: DevOps - CI/CD Pipeline Design
 
-# CI/CD Tool: GitHub Actions
+## CI/CD Tool: GitHub Actions
 Justifications:
 - Integrated: Native GitHub integration
 - Cost-Effective: Free for public repositories, competitive pricing
 - Flexibility: Supports custom workflows and third-party actions
 - Security: Built-in secrets management and security scanning
 
-Pipeline Stages:
+## Pipeline Stages:
 1. Code Quality: Linting (flake8), formatting (black), import sorting (isort)
 2. Testing: Unit tests with coverage reporting
 3. Security: Vulnerability scanning with Trivy
@@ -197,7 +197,7 @@ Multiple environments in the cloud (for example: a dev-staging-prod setup). This
 
 For critical applications (where outages must be avoided at all costs) a multi region deployment is ideal, as it decreases the chance for outage, providing more stability.
 
-Semantic versioning: automate versioning inside the CI/CD pipeline, changelog generation based on commit messages. (example tool: semantic-release)
+Semantic versioning: automate versioning inside the CI/CD pipeline, changelog generation based on commit messages. (example tool: semantic-release).
 
 Enhancing the workflow: deploy to staging from the develop branch and require manual approval (code review) before deploying to production from the main branch. 
 
@@ -206,3 +206,7 @@ Deployment strategies (canary/blue-green): when multiple versions of the applica
 A disaster recovery plan could be designed for emergencies, to restore/roll back to a previous state.
 An "exit plan" could also be worked upon, where all resources from the cloud provider (in this case GCP) could be migrated to another cloud provider (for eg. Azure/AWS). This all depends on business needs and compliance.
 
+
+
+
+Disclaimer: there could be errors in the ci-cd.yaml and terraform code, as I haven't tested them, just wrote a quick POC code.
